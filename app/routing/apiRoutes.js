@@ -3,7 +3,7 @@ var friendsList = require ('../data/friends.js');
 // Declare global variables 
 var matchName = '';
 var matchImage = '';
-var scoreScale = 100; // Set the initial value to a number that will be much greater than the largest possible difference in userScores and friendsList.scores.
+var scoreScale = 100; // Set the initial value to a number that will be much greater than the largest possible difference b/w userScores and friendsList.scores.
 var variance = 0;
 
 module.exports = function (app) {
@@ -33,9 +33,8 @@ module.exports = function (app) {
 
 			// Determine the lowest variance by setting scoreScale equal to variance - The lowest varinace will remain and that index will be applied to the matchName and matchIMG  
 			if (variance < scoreScale) {
-				// console.log('Closest match found = ' + diff);
 
-				totalDifference = variance;
+				scoreScale = variance;
 				matchName = friendsList[i].name;
 				matchImage = friendsList[i].photo;
 			}
