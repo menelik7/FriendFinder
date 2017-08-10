@@ -164,13 +164,13 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" style="padding: 45px">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h2 class="modal-title" id="myModalLabel"></h2>
+				<h2 class="modal-title" id="myModalLabel" style='color:#2F6FB9'></h2>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="padding: 45px">
 				<h2 id="matchName"></h2>
-				<img id="matchImg" src="" alt="">
+				<img id="matchImg" src="" alt="" style="max-width: 500px; max-height: 400px;">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -233,7 +233,7 @@ $("#submit").on("click", function(){
 		$.post(currentURL + "/api/friends", userData, function(data){
 
 			// Grab the result from the AJAX post so that the best match's name and photo are displayed.
-			$(".modal-title").html("<strong>Best Match</strong>!");
+			$("#myModalLabel").html("<strong>Best Match</strong>!");
 			$("#matchName").html(data.matchName);
 			$("#matchImg").attr("src", data.matchImage);
 

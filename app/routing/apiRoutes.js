@@ -1,11 +1,5 @@
 var friendsList = require ('../data/friends.js');
 
-// Declare global variables 
-var matchName = '';
-var matchImage = '';
-var scoreScale = 100; // Set the initial value to a number that will be much greater than the largest possible difference b/w userScores and friendsList.scores.
-var variance = 0;
-
 module.exports = function (app) {
 
 	app.get('/api/friends', function(req, res) {
@@ -22,9 +16,14 @@ module.exports = function (app) {
 		var userScores = userData.scores;
 		// console.log('userScores = ' + userScores);		
 
+		var matchName = '';
+		var matchImage = '';
+		var scoreScale = 100; // Set the initial value to a number that will be much greater than the largest possible difference b/w userScores and friendsList.scores.
+		
 		// Loop through our friendsList
 		for (var i = 0; i < friendsList.length; i++) {
 
+			var variance = 0;
 			// Loop through the scores of each question for both the new user as well as existing friends and compute their variance.
 			for (var x = 0; x < userScores.length; x++) {
 				variance += Math.abs(friendsList[i].scores[x] - userScores[x]);
