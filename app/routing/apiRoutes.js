@@ -19,7 +19,8 @@ module.exports = function (app) {
 		var matchName = '';
 		var matchImage = '';
 		var scoreScale = 100; // Set the initial value to a number that will be much greater than the largest possible difference b/w userScores and friendsList.scores.
-		
+		var varianceArray = [];
+
 		// Loop through our friendsList
 		for (var i = 0; i < friendsList.length; i++) {
 
@@ -28,18 +29,21 @@ module.exports = function (app) {
 			for (var x = 0; x < userScores.length; x++) {
 				variance += Math.abs(friendsList[i].scores[x] - userScores[x]);
 			}
-			// console.log('variance = ' + variance);
-
-			// Determine the lowest variance by setting scoreScale equal to variance - The lowest varinace will remain and that index will be applied to the matchName and matchIMG  
-			if (variance < scoreScale) {
-
-				scoreScale = variance;
-				matchName = friendsList[i].name;
-				matchImage = friendsList[i].photo;
-			}
+			
+			// Push the total score variance from each friend comparison to our variance array.
+			varianceArray.push(variance);
+			// console.log(varianceArray);
 		}
 
-		// Add new user to our friendsList
+		// Grab the index of the lowest variance in our variance array.
+		var indexOfLowestVariance = varianceArray.indexOf(Math.min.apply(null, varianceArray));
+		// console.log(indexOfLowestVariance);
+
+		// Pic the best match by setting the friendsList array to the aforementioned index.
+		matchName = friendsList[indexOfLowestVariance].name;
+		matchImage = friendsList[indexOfLowestVariance].photo;
+
+		// Add the new user to our friendsList
 		friendsList.push(userData);
 
 		// Send response to our display modal page
