@@ -32,9 +32,9 @@ module.exports = function (app) {
 			
 			// Push the total score variance from each friend comparison to our variance array.
 			varianceArray.push(variance);
-			// console.log(varianceArray);
 		}
-
+		// console.log(varianceArray);
+		
 		// Grab the index of the lowest variance in our variance array.
 		var indexOfLowestVariance = varianceArray.indexOf(Math.min.apply(null, varianceArray));
 		// console.log(indexOfLowestVariance);
