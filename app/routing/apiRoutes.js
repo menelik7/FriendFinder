@@ -18,7 +18,6 @@ module.exports = function (app) {
 
 		var matchName = '';
 		var matchImage = '';
-		var scoreScale = 100; // Set the initial value to a number that will be much greater than the largest possible difference b/w userScores and friendsList.scores.
 		var varianceArray = [];
 
 		// Loop through our friendsList
